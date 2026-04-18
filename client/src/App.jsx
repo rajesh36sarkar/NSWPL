@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/layout/Header';          
-import Footer from './components/layout/Footer';
+import Header from './components/Header';           // Adjust path if your header is elsewhere
+import Footer from './components/Footer';
 
 import HomePage from './pages/HomePage';
 import ShopPage from './pages/ShopPage';
-import ProductDetailPage from './pages/ProductDetails';
-import ContactPage from './pages/Contact';
+import ProductDetailPage from './pages/ProductDetailPage';
+import ContactPage from './pages/ContactPage';
 import ServicesPage from './pages/ServicesPage';
 import TeamPage from './pages/TeamPage';
 import NotFoundPage from './pages/NotFoundPage';

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
-import "../../styles/components/layout.css"; 
+import "../styles/layout.css"; // optional, for skip link styling
 
 const Layout = ({ children }) => {
   const { pathname } = useLocation();

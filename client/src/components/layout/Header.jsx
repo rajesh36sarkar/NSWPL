@@ -1,9 +1,15 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-// import { SlSocialFacebook, SlSocialInstagram } from "react-icons/sl";
-// import { AiOutlineWhatsApp } from "react-icons/ai";
-// import logo from "../../assets/icons/NSWPL_Logo.png";
-import "../../styles/components/header.css";
+import {
+  IoSearchOutline,
+  IoCartOutline,
+  IoMenu,
+  IoClose,
+} from "react-icons/io5";
+import { SlSocialFacebook, SlSocialInstagram } from "react-icons/sl";
+import { AiOutlineWhatsApp } from "react-icons/ai";
+import logo from "../../assets/icons/NSWPL_Logo.png";
+import "../../styles/header.css";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);

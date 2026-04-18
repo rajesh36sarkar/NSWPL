@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/components/contact.css";
+import "../styles/contact.css";
 import img1 from "../assets/images/img1.jpg";
 // Import slider images (replace with actual image paths)
 import slide1 from "../assets/images/slide1.jpg";
