@@ -1,51 +1,30 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/Header';           // Adjust path if your header is elsewhere
+import Footer from './components/Footer';
 
-import Header from "./components/layout/Header";
-import Footer from "./components/layout/Footer";
-
-// Public Pages
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Services from "./pages/Services";   // ✅ Added Services page
-import Team from "./pages/Team";
-import FAQ from "./pages/FAQ";
-import Shop from "./pages/Shop";
-import Categories from "./pages/Categories";
-import Contact from "./pages/Contact";
-import NotFound from "./pages/NotFound";
-
-// Admin Pages
-import AdminLogin from "./admin/AdminLogin";
-import AdminDashboard from "./admin/AdminDashboard";
+import HomePage from './pages/HomePage';
+import ShopPage from './pages/ShopPage';
+import ProductDetailPage from './pages/ProductDetailPage';
+import ContactPage from './pages/ContactPage';
+import ServicesPage from './pages/ServicesPage';
+import TeamPage from './pages/TeamPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Header />
-
-      <main style={{ minHeight: "70vh" }}>
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />   {/* ✅ New route */}
-          <Route path="/team" element={<Team />} />
-          <Route path="/faq" element={<FAQ />} />
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/categories" element={<Categories />} />
-          <Route path="/contact" element={<Contact />} />
-
-          {/* Admin Routes */}
-          <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
-
-          {/* 404 Catch-all */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
-
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/shop" element={<ShopPage />} />
+        <Route path="/product/:id" element={<ProductDetailPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/team" element={<TeamPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
       <Footer />
-    </BrowserRouter>
+    </Router>
   );
 }
 

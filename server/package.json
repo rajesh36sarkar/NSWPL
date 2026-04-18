@@ -2,11 +2,12 @@
   "name": "server",
   "version": "1.0.0",
   "description": "Backend API for NSWPL",
-  "main": "server.js",
+  "main": "src/server.js",
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "server": "nodemon server.js"
+    "server": "nodemon src/server.js",
+    "dev": "nodemon src/server.js"
   },
   "keywords": [],
   "author": "",

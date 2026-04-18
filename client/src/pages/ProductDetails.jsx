@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import axios from "axios";
+import api from '../services/api';
 import "../styles/productDetails.css";
 
 const ProductDetails = () => {
@@ -16,12 +16,12 @@ const ProductDetails = () => {
 
   // Fetch Product
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/products/${id}`)
+    api.get(`http://localhost:5000/api/products/${id}`)
       .then((res) => {
         setProduct(res.data);
         // Fetch related products (same category, excluding current)
         if (res.data.category) {
-          axios.get(`http://localhost:5000/api/products?category=${res.data.category}&limit=3`)
+          api.get(`http://localhost:5000/api/products?category=${res.data.category}&limit=3`)
             .then((relRes) => {
               const filtered = relRes.data.filter(p => p._id !== res.data._id);
               setRelatedProducts(filtered.slice(0, 3));
@@ -43,7 +43,7 @@ const ProductDetails = () => {
     setSubmitting(true);
 
     try {
-      await axios.post("http://localhost:5000/api/orders", {
+      await api.post("http://localhost:5000/api/orders", {
         customerName,
         phone,
         productName: product.name,

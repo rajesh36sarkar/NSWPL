@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import api from '../services/api';
 import "../styles/Shop.css";
 
 const Product = () => {
@@ -268,7 +268,7 @@ const ProductModal = ({ product, onClose }) => {
     setSubmitting(true);
     try {
       // Replace with your actual API endpoint
-      await axios.post("http://localhost:5000/api/orders", {
+      await api.post("http://localhost:5000/api/orders", {
         customerName,
         phone,
         productName: product.name,
