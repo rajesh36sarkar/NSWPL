@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { SlSocialFacebook, SlSocialInstagram } from "react-icons/sl";
-import { AiOutlineWhatsApp } from "react-icons/ai";
-import { FaArrowUp, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
-import "../../styles/footer.css";
+// import { SlSocialFacebook, SlSocialInstagram } from "react-icons/sl";
+// import { AiOutlineWhatsApp } from "react-icons/ai";
+// import { FaArrowUp, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
+import "../../styles/components/footer.css";
 
 const Footer = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);

@@ -2,7 +2,10 @@ import Contact from './contact.model.js';
 
 class ContactService {
   async createContact(data) {
-    return await Contact.create(data);
+    console.log('💾 Attempting to save contact:', data);
+    const contact = await Contact.create(data);
+    console.log('✅ Contact saved with ID:', contact._id);
+    return contact;
   }
 
   async getAllContacts(query = {}) {

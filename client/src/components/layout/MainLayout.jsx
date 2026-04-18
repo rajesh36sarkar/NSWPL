@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useLocation, Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
-import "../styles/layout.css"; // optional, for styling
+import "../../styles/components/layout.css"; // optional, for styling
 
 const MainLayout = () => {
   const { pathname } = useLocation();

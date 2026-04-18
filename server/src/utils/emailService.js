@@ -15,13 +15,11 @@ const transporter = nodemailer.createTransport({
 });
 
 // Verify email configuration (with better handling)
-transporter.verify((error) => {
+transporter.verify((error, success) => {
   if (error) {
-    console.warn('⚠️ Email service could not be verified (Gmail connection issue)');
-    console.warn('   Contact form will still work, but emails may fail until fixed.');
-    console.warn('   Possible causes: Wrong App Password, 2FA not enabled, or network block.');
+    console.warn('⚠️ Email service could not be verified:', error.message);
   } else {
-    console.log('✅ Email service ready - Gmail SMTP connected');
+    console.log('✅ Email service ready');
   }
 });
 
