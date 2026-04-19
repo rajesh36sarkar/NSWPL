@@ -1,5 +1,8 @@
+// src/pages/FAQ.jsx
 import React, { useState } from 'react';
-import '../styles/FAQ.css';
+import { Helmet } from 'react-helmet-async';
+import { COMPANY_INFO } from '../utils/constants';
+import './pageStyles/FAQ.css';
 
 const FAQ = () => {
   const [faqs, setFaqs] = useState([
@@ -20,7 +23,7 @@ const FAQ = () => {
     {
       id: 3,
       question: "Where is your factory located?",
-      answer: "Our registered office and works are located at 14B, Patwar Bagan Lane, Kolkata - 700009, West Bengal. We also have a presence near the Jorakhana Stoppage in Prafulla Kanan.",
+      answer: "Our registered office and works are located at 14B, Patwar Bagan Lane, Kolkata - 700009, West Bengal. We also have an additional facility at A-339, Thakdari Road, Kestopur, New Town.",
       category: "location",
       open: false
     },
@@ -34,7 +37,7 @@ const FAQ = () => {
     {
       id: 5,
       question: "What are your delivery options?",
-      answer: "We deliver across Kolkata and West Bengal. For larger bulk orders, we can arrange logistics for delivery pan-India. Standard delivery times vary based on order size and location.",
+      answer: "We deliver across Kolkata and West Bengal with 1-2 day delivery. For larger bulk orders, we can arrange logistics for delivery pan-India. Standard delivery times vary based on order size and location.",
       category: "shipping",
       open: false
     },
@@ -74,99 +77,102 @@ const FAQ = () => {
   });
 
   return (
-    <div className="faq-page">
-      <div className="faq-container">
-        {/* Header Section */}
-        <div className="faq-header">
-          <span className="section-badge">Support Center</span>
-          <h1>Frequently Asked Questions</h1>
-          <p>Find quick answers to common queries about our stationery products and services.</p>
-        </div>
+    <>
+      <Helmet>
+        <title>FAQ - {COMPANY_INFO.tradeName}</title>
+        <meta name="description" content="Find answers to frequently asked questions about Netai Stationery Works products, pricing, shipping, and customization services." />
+      </Helmet>
 
-        {/* Search & Filter Bar */}
-        <div className="faq-controls">
-          <div className="search-wrapper">
-            <span className="search-icon">🔍</span>
-            <input 
-              type="text" 
-              placeholder="Search your question..." 
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="search-input"
-            />
-            {searchTerm && (
-              <button className="clear-search" onClick={() => setSearchTerm('')}>✕</button>
-            )}
+      <div className="faq-page">
+        <div className="faq-container">
+          <div className="faq-header">
+            <span className="section-badge">Support Center</span>
+            <h1>Frequently Asked Questions</h1>
+            <p>Find quick answers to common queries about our stationery products and services.</p>
           </div>
-          
-          <div className="category-filters">
-            {categories.map(cat => (
-              <button
-                key={cat.id}
-                className={`filter-btn ${activeCategory === cat.id ? 'active' : ''}`}
-                onClick={() => setActiveCategory(cat.id)}
-              >
-                {cat.label}
-              </button>
-            ))}
-          </div>
-        </div>
 
-        {/* FAQ List */}
-        <div className="faq-list">
-          {filteredFaqs.length === 0 ? (
-            <div className="no-results">
-              <span className="no-results-icon">📭</span>
-              <p>No questions found matching your search.</p>
-              <button className="reset-btn" onClick={() => { setSearchTerm(''); setActiveCategory('all'); }}>
-                Clear filters
-              </button>
+          <div className="faq-controls">
+            <div className="search-wrapper">
+              <span className="search-icon">🔍</span>
+              <input 
+                type="text" 
+                placeholder="Search your question..." 
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="search-input"
+              />
+              {searchTerm && (
+                <button className="clear-search" onClick={() => setSearchTerm('')}>✕</button>
+              )}
             </div>
-          ) : (
-            filteredFaqs.map((faq) => (
-              <div 
-                className={`faq-item ${faq.open ? 'open' : ''}`} 
-                key={faq.id}
-              >
-                <div 
-                  className="faq-question"
-                  onClick={() => toggleFAQ(faq.id)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyPress={(e) => e.key === 'Enter' && toggleFAQ(faq.id)}
-                  aria-expanded={faq.open}
+
+            <div className="category-filters">
+              {categories.map(cat => (
+                <button
+                  key={cat.id}
+                  className={`filter-btn ${activeCategory === cat.id ? 'active' : ''}`}
+                  onClick={() => setActiveCategory(cat.id)}
                 >
-                  <span className="question-text">{faq.question}</span>
-                  <span className="faq-icon">{faq.open ? '−' : '+'}</span>
-                </div>
-                <div className="faq-answer">
-                  <div className="answer-content">
-                    <p>{faq.answer}</p>
+                  {cat.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="faq-list">
+            {filteredFaqs.length === 0 ? (
+              <div className="no-results">
+                <span className="no-results-icon">📭</span>
+                <p>No questions found matching your search.</p>
+                <button className="reset-btn" onClick={() => { setSearchTerm(''); setActiveCategory('all'); }}>
+                  Clear filters
+                </button>
+              </div>
+            ) : (
+              filteredFaqs.map((faq) => (
+                <div 
+                  className={`faq-item ${faq.open ? 'open' : ''}`} 
+                  key={faq.id}
+                >
+                  <div 
+                    className="faq-question"
+                    onClick={() => toggleFAQ(faq.id)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyPress={(e) => e.key === 'Enter' && toggleFAQ(faq.id)}
+                    aria-expanded={faq.open}
+                  >
+                    <span className="question-text">{faq.question}</span>
+                    <span className="faq-icon">{faq.open ? '−' : '+'}</span>
+                  </div>
+                  <div className="faq-answer">
+                    <div className="answer-content">
+                      <p>{faq.answer}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))
-          )}
-        </div>
+              ))
+            )}
+          </div>
 
-        {/* Contact Support Section */}
-        <div className="contact-support">
-          <div className="support-card">
-            <div className="support-icon">💬</div>
-            <h3>Still have questions?</h3>
-            <p>Our team is ready to help you with any specific inquiries.</p>
-            <div className="support-buttons">
-              <button className="btn-primary">Contact Support</button>
-              <button className="btn-secondary">Request a Callback</button>
-            </div>
-            <div className="support-links">
-              <a href="mailto:info@netai.com">✉️ info@netai.com</a>
-              <a href="tel:+911234567890">📞 +91 12345 67890</a>
+          <div className="contact-support">
+            <div className="support-card">
+              <div className="support-icon">💬</div>
+              <h3>Still have questions?</h3>
+              <p>Our team is ready to help you with any specific inquiries.</p>
+              <div className="support-buttons">
+                <a href="/contact" className="btn-primary">Contact Support</a>
+                <a href="/contact" className="btn-secondary">Request a Callback</a>
+              </div>
+              <div className="support-links">
+                <a href={`mailto:${COMPANY_INFO.email}`}>✉️ {COMPANY_INFO.email}</a>
+                <a href={`tel:${COMPANY_INFO.phones[0]}`}>📞 {COMPANY_INFO.phones[0]}</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

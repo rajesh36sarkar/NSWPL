@@ -1,177 +1,130 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios"; // Using axios directly as requested
-import ProductCard from "../components/product/ProductCard";
-import "../styles/home.css";
+// src/pages/Home.jsx
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
+import SectionTitle from '../components/ui/SectionTitle';
+import Button from '../components/ui/Button';
+import Card from '../components/ui/Card';
+import { COMPANY_INFO, PRODUCT_BRANDS, TEAM_MEMBERS } from '../utils/constants';
+import './pageStyles/Home.css';
 
 const Home = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  // --- Slider Data (Static) ---
-  const slides = [
-    {
-      id: 1,
-      image: "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?q=80&w=1920&auto=format&fit=crop",
-      title: "Stationery & Printing",
-      subtitle: "PREMIUM QUALITY",
-      desc: "Equipping schools and offices with the finest tools."
-    },
-    {
-      id: 2,
-      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1920&auto=format&fit=crop",
-      title: "Bulk Manufacturing",
-      subtitle: "WHOLESALE ORDERS",
-      desc: "High-volume notebook production for corporate clients."
-    },
-    {
-      id: 3,
-      image: "https://images.unsplash.com/photo-1516961642265-531546e84af2?q=80&w=1920&auto=format&fit=crop",
-      title: "Enough Thinking.",
-      subtitle: "START CREATING",
-      desc: "It's time to upgrade your workspace with Netai Stationery."
-    }
-  ];
-
-  // --- Auto Rotate Slider ---
-  useEffect(() => {
-    const slideInterval = setInterval(() => {
-      setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-    }, 5000);
-    return () => clearInterval(slideInterval);
-  }, [slides.length]);
-
-  // --- Fetch Products from Backend ---
-  useEffect(() => {
-    axios.get("http://localhost:5000/api/products")
-      .then((res) => {
-        // Take first 8 products
-        setProducts(res.data.slice(0, 8)); 
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error fetching products:", err);
-        setLoading(false);
-      });
-  }, []);
-
   return (
-    <div className="home-container">
-      
-      {/* 1. HERO SLIDER */}
-      <section className="hero-slider-section">
-        {slides.map((slide, index) => (
-          <div 
-            key={slide.id} 
-            className={`hero-slide ${index === currentSlide ? "active" : ""}`}
-            style={{ backgroundImage: `url(${slide.image})` }}
-          >
-            <div className="hero-overlay-dark">
-              <div className="hero-content">
-                <span className="hero-subtitle">{slide.subtitle}</span>
-                <h1>{slide.title}</h1>
-                <p>{slide.desc}</p>
-                <Link to="/shop" className="btn-hero">Shop Now</Link>
+    <>
+      <Helmet>
+        <title>{COMPANY_INFO.tradeName} - Premium Stationery Manufacturer in Kolkata</title>
+        <meta name="description" content="NETAI STATIONERY WORKS PVT. LTD. - Leading manufacturer of premium notebooks, registers, and stationery products in Kolkata. Quality products since 2025." />
+      </Helmet>
+
+      <div className="home-page">
+        {/* Hero Section */}
+        <section className="hero-section">
+          <div className="container">
+            <div className="hero-content">
+              <h1 className="hero-title">
+                Premium Stationery
+                <span className="hero-highlight"> Made in Kolkata</span>
+              </h1>
+              <p className="hero-subtitle">
+                Quality notebooks, registers, and custom stationery for businesses and individuals
+              </p>
+              <div className="hero-buttons">
+                <Link to="/products">
+                  <Button variant="primary" size="large">
+                    Explore Products
+                  </Button>
+                </Link>
+                <Link to="/contact">
+                  <Button variant="outline" size="large">
+                    Contact Us
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
-        ))}
-        
-        <div className="slider-dots">
-          {slides.map((_, index) => (
-            <span 
-              key={index} 
-              className={`dot ${index === currentSlide ? "active" : ""}`}
-              onClick={() => setCurrentSlide(index)}
-            ></span>
-          ))}
-        </div>
-      </section>
+        </section>
 
-      {/* 2. CATEGORY BANNERS */}
-      <section className="content-wrapper categories-section">
-        <div className="cat-card">
-          <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=600&auto=format&fit=crop" alt="Notebooks" />
-          <div className="cat-overlay">
-            <h3>Notebooks</h3>
-            <Link to="/categories">Browse</Link>
+        {/* Brands Section */}
+        <section className="brands-section">
+          <div className="container">
+            <SectionTitle 
+              title="Our Premium Brands"
+              subtitle="Quality stationery trusted by thousands"
+            />
+            <div className="brands-grid">
+              {PRODUCT_BRANDS.slice(0, 6).map((brand) => (
+                <Card key={brand} className="brand-card">
+                  <h3>{brand}</h3>
+                  <p>Premium Quality</p>
+                </Card>
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="cat-card">
-          <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=600&auto=format&fit=crop" alt="Office" />
-          <div className="cat-overlay">
-            <h3>Office Supplies</h3>
-            <Link to="/categories">Browse</Link>
+        </section>
+
+        {/* Features Section */}
+        <section className="features-section">
+          <div className="container">
+            <div className="features-grid">
+              <Card className="feature-card">
+                <div className="feature-icon">🏭</div>
+                <h3>State-of-the-Art Manufacturing</h3>
+                <p>Modern production facility in Kolkata with latest machinery</p>
+              </Card>
+              <Card className="feature-card">
+                <div className="feature-icon">📦</div>
+                <h3>Bulk Orders Welcome</h3>
+                <p>Competitive pricing for schools, colleges, and businesses</p>
+              </Card>
+              <Card className="feature-card">
+                <div className="feature-icon">⭐</div>
+                <h3>Quality Assured</h3>
+                <p>Premium paper quality and perfect binding guaranteed</p>
+              </Card>
+              <Card className="feature-card">
+                <div className="feature-icon">🚚</div>
+                <h3>Pan India Delivery</h3>
+                <p>Fast and reliable shipping across India</p>
+              </Card>
+            </div>
           </div>
-        </div>
-        <div className="cat-card">
-          <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=600&auto=format&fit=crop" alt="Art" />
-          <div className="cat-overlay">
-            <h3>Art Essentials</h3>
-            <Link to="/categories">Browse</Link>
+        </section>
+
+        {/* Team Section */}
+        <section className="team-section">
+          <div className="container">
+            <SectionTitle 
+              title="Leadership Team"
+              subtitle="Experienced professionals driving excellence"
+            />
+            <div className="team-grid">
+              {TEAM_MEMBERS.directors.map((member) => (
+                <Card key={member.name} className="team-card">
+                  <div className="team-avatar">👤</div>
+                  <h3>{member.name}</h3>
+                  <p className="team-designation">{member.designation}</p>
+                </Card>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* 3. BEST SELLERS */}
-      <section className="content-wrapper best-sellers">
-        <div className="section-header">
-          <h2>Best Sellers</h2>
-          <p>Our most popular products this week</p>
-        </div>
-        
-        {loading ? (
-          <p className="loading-text">Loading products from server...</p>
-        ) : (
-          <div className="products-grid">
-            {products.map((p) => (
-              <div key={p._id} className="product-card-wrapper">
-                <ProductCard product={p} />
-              </div>
-            ))}
+        {/* CTA Section */}
+        <section className="cta-section">
+          <div className="container">
+            <div className="cta-content">
+              <h2>Ready to Place an Order?</h2>
+              <p>Contact us today for bulk orders and custom requirements</p>
+              <Link to="/contact">
+                <Button variant="secondary" size="large">
+                  Get in Touch
+                </Button>
+              </Link>
+            </div>
           </div>
-        )}
-        
-        <div className="center-btn">
-          <Link to="/shop" className="btn-outline">View All Products</Link>
-        </div>
-      </section>
-
-      {/* 4. PROMO BANNER */}
-      <section className="promo-banner">
-        <div className="promo-content">
-          <h2>Bulk Orders for Schools?</h2>
-          <p>Get up to <strong>20% OFF</strong> on wholesale notebook printing.</p>
-          <Link to="/contact" className="btn-white">Contact Us</Link>
-        </div>
-      </section>
-
-      {/* 5. SERVICES */}
-      <section className="content-wrapper features-section">
-        <div className="feature-item">
-          <div className="icon">🚚</div>
-          <h4>Fast Delivery</h4>
-          <p>Across West Bengal</p>
-        </div>
-        <div className="feature-item">
-          <div className="icon">↺</div>
-          <h4>Easy Returns</h4>
-          <p>Hassle-free policy</p>
-        </div>
-        <div className="feature-item">
-          <div className="icon">🔒</div>
-          <h4>Secure Payment</h4>
-          <p>100% Secure checkout</p>
-        </div>
-        <div className="feature-item">
-          <div className="icon">📞</div>
-          <h4>24/7 Support</h4>
-          <p>Dedicated team</p>
-        </div>
-      </section>
-
-    </div>
+        </section>
+      </div>
+    </>
   );
 };
 

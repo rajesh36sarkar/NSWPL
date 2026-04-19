@@ -1,0 +1,49 @@
+/* src/App.css */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: white;
+}
+
+/* Loading State */
+.app-loading {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #000000, #23201E);
+}
+
+.app-loading .loading-spinner {
+  border-top-color: #E2C614;
+}
+
+/* Toast Notifications - Updated Colors */
+.Toaster {
+  --toastify-color-success: #E2C614;
+  --toastify-color-error: #000000;
+}
+
+/* Focus Styles */
+*:focus-visible {
+  outline: 3px solid #E2C614;
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background: #E2C614;
+  color: #000000;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

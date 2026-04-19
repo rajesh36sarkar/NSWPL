@@ -1,210 +1,77 @@
-import React from "react";
-import "../styles/services.css";
-import heroBg from "../assets/images/services-hero.jpeg";
-import { 
-  FaPenFancy, 
-  FaBox, 
-  FaPrint, 
-  FaIndustry, 
-  FaTruck, 
-  FaClipboardCheck,
-  FaCheckCircle,
-  FaComments,
-  FaPencilRuler,
-  FaCogs,
-  FaShippingFast 
-} from "react-icons/fa";
+// src/pages/Services.jsx
+import React from 'react';
+import { Helmet } from 'react-helmet-async';
+import SectionTitle from '../components/ui/SectionTitle';
+import Card from '../components/ui/Card';
+import { COMPANY_INFO } from '../utils/constants';
+import './pageStyles/Services.css';
 
 const Services = () => {
-  // Services data
   const services = [
     {
-      id: 1,
-      icon: <FaPenFancy />,
-      title: "Custom Stationery Design",
-      description: "Tailored stationery solutions that reflect your brand identity and meet your specific requirements.",
-      features: [
-        "Corporate notebooks and diaries",
-        "Customized office supplies",
-        "Branded stationery kits",
-        "Premium writing instruments",
-        "Customized filing solutions"
-      ]
+      icon: '📓',
+      title: 'Custom Notebooks',
+      description: 'Personalized notebooks for schools, colleges, and corporate gifting'
     },
     {
-      id: 2,
-      icon: <FaBox />,
-      title: "Packaging Solutions",
-      description: "Innovative and eco-friendly packaging designs that enhance product presentation and protection.",
-      features: [
-        "Custom product packaging",
-        "Eco-friendly packaging materials",
-        "Gift and promotional packaging",
-        "Retail display solutions",
-        "Shipping and logistics packaging"
-      ]
+      icon: '📊',
+      title: 'Registers & Ledgers',
+      description: 'High-quality registers for accounting and record keeping'
     },
     {
-      id: 3,
-      icon: <FaPrint />,
-      title: "Commercial Printing",
-      description: "High-quality printing services for marketing materials, publications, and corporate documents.",
-      features: [
-        "Marketing collateral (brochures, flyers, catalogs)",
-        "Business cards and letterheads",
-        "Posters and banners",
-        "Corporate reports and publications",
-        "Customized calendars and planners"
-      ]
+      icon: '📦',
+      title: 'Bulk Manufacturing',
+      description: 'Large-scale production for institutions and businesses'
     },
     {
-      id: 4,
-      icon: <FaIndustry />,
-      title: "Bulk Manufacturing",
-      description: "Large-scale production capabilities to meet high-volume requirements with consistent quality.",
-      features: [
-        "School notebook production",
-        "Corporate diary manufacturing",
-        "Register and ledger production",
-        "Custom binding options",
-        "Quality-controlled mass production"
-      ]
+      icon: '✏️',
+      title: 'Drawing Books',
+      description: 'Premium quality drawing and sketch books for artists'
     },
     {
-      id: 5,
-      icon: <FaTruck />,
-      title: "Supply Chain Management",
-      description: "Efficient inventory management and distribution solutions to streamline your operations.",
-      features: [
-        "Inventory planning and forecasting",
-        "Warehousing and storage",
-        "Order fulfillment",
-        "PAN India delivery network",
-        "Real-time tracking"
-      ]
+      icon: '🎨',
+      title: 'Custom Branding',
+      description: 'Your brand on our quality stationery products'
     },
     {
-      id: 6,
-      icon: <FaClipboardCheck />,
-      title: "Quality Assurance",
-      description: "Rigorous quality control processes to ensure every product meets our high standards.",
-      features: [
-        "Multi-stage quality checks",
-        "Material inspection",
-        "Print quality verification",
-        "Binding durability testing",
-        "Final product audit"
-      ]
-    }
-  ];
-
-  // Process steps
-  const processSteps = [
-    {
-      step: "01",
-      icon: <FaComments />,
-      title: "Consultation",
-      description: "We begin by understanding your requirements, objectives, and brand guidelines."
-    },
-    {
-      step: "02",
-      icon: <FaPencilRuler />,
-      title: "Design & Planning",
-      description: "Our team creates designs and develops a detailed plan for production."
-    },
-    {
-      step: "03",
-      icon: <FaCogs />,
-      title: "Production",
-      description: "We manufacture your products with rigorous quality control at every stage."
-    },
-    {
-      step: "04",
-      icon: <FaShippingFast />,
-      title: "Delivery",
-      description: "We ensure timely delivery and follow up to ensure your complete satisfaction."
+      icon: '🚛',
+      title: 'Pan India Shipping',
+      description: 'Reliable delivery across all states in India'
     }
   ];
 
   return (
-    <div className="services-page">
-      {/* Hero Section */}
-      <section 
-        className="services-hero"
-        style={{ backgroundImage: `linear-gradient(rgba(20,20,20,0.6), rgba(20,20,20,0.7)), url(${heroBg})` }}
-      >
-        <div className="services-hero-content">
-          <h1>Our Services</h1>
-          <p>From custom design to bulk manufacturing, we provide end-to-end solutions for all your stationery and printing needs.</p>
-        </div>
-      </section>
+    <>
+      <Helmet>
+        <title>Our Services - {COMPANY_INFO.tradeName}</title>
+        <meta name="description" content="Comprehensive stationery manufacturing services including custom notebooks, registers, bulk orders, and pan India delivery." />
+      </Helmet>
 
-      {/* Introduction Section */}
-      <section className="services-intro">
-        <div className="services-container">
-          <div className="intro-header">
-            <span className="intro-label">What We Offer</span>
-            <h2>Comprehensive Stationery & Printing Solutions</h2>
-            <p>With over 28 years of experience, Netai Stationery Works delivers premium quality products and customized solutions for educational institutions, corporate clients, and retailers across India.</p>
-          </div>
-        </div>
-      </section>
+      <div className="services-page">
+        <div className="container">
+          <SectionTitle 
+            title="Our Services"
+            subtitle="Comprehensive stationery solutions for every need"
+          />
 
-      {/* Services Grid */}
-      <section className="services-grid-section">
-        <div className="services-container">
           <div className="services-grid">
-            {services.map((service) => (
-              <div className="service-card" key={service.id}>
+            {services.map((service, index) => (
+              <Card key={index} className="service-card">
                 <div className="service-icon">{service.icon}</div>
                 <h3>{service.title}</h3>
-                <p className="service-desc">{service.description}</p>
-                <ul className="service-features">
-                  {service.features.map((feature, index) => (
-                    <li key={index}>
-                      <FaCheckCircle className="check-icon" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                <p>{service.description}</p>
+              </Card>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* Process Section */}
-      <section className="process-section">
-        <div className="services-container">
-          <div className="process-header">
-            <span className="intro-label">How We Work</span>
-            <h2>Our Process</h2>
-            <p>We follow a structured approach to ensure that every project is completed to the highest standards and meets your expectations.</p>
-          </div>
-          <div className="process-steps">
-            {processSteps.map((step, index) => (
-              <div className="process-card" key={index}>
-                <div className="step-number">{step.step}</div>
-                <div className="step-icon">{step.icon}</div>
-                <h4>{step.title}</h4>
-                <p>{step.description}</p>
-              </div>
-            ))}
-          </div>
+          <Card className="bulk-order-card">
+            <h2>Interested in Bulk Orders?</h2>
+            <p>We offer special pricing for schools, colleges, corporate offices, and institutions. Contact us for a customized quote.</p>
+            <a href="/contact" className="btn btn-primary">Get Quote</a>
+          </Card>
         </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="services-cta">
-        <div className="services-container">
-          <div className="cta-content">
-            <h2>Ready to Start Your Project?</h2>
-            <p>Contact us today to discuss your stationery and printing requirements. We're here to help bring your ideas to life.</p>
-            <a href="/contact" className="cta-button">Get in Touch</a>
-          </div>
-        </div>
-      </section>
-    </div>
+      </div>
+    </>
   );
 };
 

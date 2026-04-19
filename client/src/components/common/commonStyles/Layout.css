@@ -1,0 +1,6 @@
+/* src/components/common/Layout.css */
+.main-content {
+  flex: 1;
+  min-height: calc(100vh - 200px);
+  background: var(--bg-secondary);
+}

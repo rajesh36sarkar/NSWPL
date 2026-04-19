@@ -1,0 +1,34 @@
+/* src/components/ui/SectionTitle.css */
+.section-title {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.section-title.centered {
+  text-align: center;
+}
+
+.title-main {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.title-subtitle {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-md);
+}
+
+.title-underline {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  border-radius: var(--radius-full);
+}
+
+.centered .title-underline {
+  margin: 0 auto;
+}

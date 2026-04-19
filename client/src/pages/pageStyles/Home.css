@@ -1,0 +1,104 @@
+/* src/pages/Home.css - Hero Section with new colors */
+.hero-section {
+  background: linear-gradient(135deg, #000000 0%, #23201E 100%);
+  color: white;
+  padding: var(--spacing-3xl) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(226, 198, 20, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(191, 191, 191, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero-title {
+  color: white;
+}
+
+.hero-highlight {
+  color: #E2C614;
+}
+
+.hero-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Feature Cards */
+.feature-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+  border: 1px solid #BFBFBF;
+}
+
+.feature-card:hover {
+  border-color: #E2C614;
+  box-shadow: 0 10px 30px rgba(226, 198, 20, 0.2);
+  transform: translateY(-5px);
+}
+
+.feature-icon {
+  color: #E2C614;
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.feature-card h3 {
+  color: #000000;
+}
+
+/* Brand Cards */
+.brand-card {
+  background: white;
+  border: 2px solid #BFBFBF;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.brand-card:hover {
+  border-color: #E2C614;
+  background: linear-gradient(135deg, white, #FAFAFA);
+  box-shadow: var(--shadow-glow);
+}
+
+.brand-card h3 {
+  color: #000000;
+  font-weight: 700;
+}
+
+/* CTA Section */
+.cta-section {
+  background: linear-gradient(135deg, #E2C614 0%, #BFBFBF 100%);
+  padding: var(--spacing-3xl) 0;
+  text-align: center;
+}
+
+.cta-content h2 {
+  color: #000000;
+}
+
+.cta-content p {
+  color: #23201E;
+}
